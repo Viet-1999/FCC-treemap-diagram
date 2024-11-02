@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>D3 Treemap Diagram</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <main>
+      <h1 id="title">Kickstarter Pledges</h1>
+      <h2 id="description">
+        Top 100 Most Pledged Kickstarter Campaigns Grouped By Category
+      </h2>
+      <div id="tooltip"></div>
+      <svg id="canvas"></svg>
+      <svg id="legend">
+          <g>
+            <rect
+              class="legend-item"
+              fill="blue"
+              x="10"
+              y="80"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="100">
+              Product Design
+            </text>
+          <g>
+            <rect
+              class="legend-item"
+              fill="skyblue"
+              x="10"
+              y="120"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="140">Tabletop Games</text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="orange"
+              x="10"
+              y="160"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="180">Video Games</text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="tan"
+              x="10"
+              y="200"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="220">Technology</text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="green"
+              x="10"
+              y="240"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="260">Hardware</text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="darkgreen"
+              x="10"
+              y="280"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="300">
+              Sound
+            </text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="red"
+              x="10"
+              y="320"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="340">Gaming Hardware</text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="darksalmon"
+              x="10"
+              y="360"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="380">Narrative Film</text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="purple"
+              x="10"
+              y="400"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="420">
+              3D Printing
+            </text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="lavender"
+              x="10"
+              y="440"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="460">Television</text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="brown"
+              x="10"
+              y="480"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="500">
+              Web
+            </text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="cyan"
+              x="10"
+              y="520"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="540">
+              Wearables
+            </text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="pink"
+              x="10"
+              y="560"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="580">
+              Food
+            </text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="lightpink"
+              x="10"
+              y="600"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="620">
+              Games
+            </text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="gainsboro"
+              x="10"
+              y="640"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="660">Sculpture</text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="grey"
+              x="10"
+              y="680"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="700">
+              Apparel
+            </text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="lightgreen"
+              x="10"
+              y="720"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="740">Art</text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="fuchsia"
+              x="10"
+              y="760"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="780">
+              Gadgets
+            </text>
+          </g>
+          <g>
+            <rect
+              class="legend-item"
+              fill="dodgerblue"
+              x="10"
+              y="800"
+              width="40"
+              height="40"
+            ></rect>
+            <text x="60" y="820">
+              Drinks
+            </text>
+          </g>
+      </svg>
+    </main>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-scale-chromatic@3.0.0/dist/d3-scale-chromatic.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
